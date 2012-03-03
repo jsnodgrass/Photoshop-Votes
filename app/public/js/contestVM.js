@@ -34,7 +34,9 @@ var Contest = function(options) {
       var year = returnDate.getFullYear();
       var month = returnDate.getMonth()+1
       var day = returnDate.getDate();
-      returnDate = 'Contest Ends '+month+'/'+day+'/'+year;
+      var now = new Date();
+      if(returnDate < now) returnDate = 'Contest Ended '+month+'/'+day+'/'+year;
+      else returnDate = 'Contest Ends '+month+'/'+day+'/'+year;
       return returnDate;
     } else {
       return ""
