@@ -3,7 +3,7 @@ var passport = require('passport');
 var filters = require('../lib/filters');
 
 /**
- * Submissions Controller
+ * Admin Controller
  */
  
 exports = module.exports = {
