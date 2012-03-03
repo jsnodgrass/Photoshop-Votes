@@ -4,65 +4,65 @@ block subject
   header#subject.wrap
 
 block content
-    section#contest_wrapper
-      span#new_contest.button +
-        span New Contest
+  section#contest_wrapper
+    span#new_contest.button +
+      span New Contest
 
-      div.contests
-        header
-          h1.current My Current Contests
-        ul.contest_list(data-bind="foreach:my_contests")
-          li(data-bind="visible:current_contest")
-            header
-              a(data-bind="attr:{href:url}")
-                h1(data-bind="text:name")
-              span.button.edit_contest
-                img(src="/images/pencil.png")
-                span Edit Contest
-              h3(data-bind="text:when_ends")
-                
-            p(data-bind="text:description")
-            ul.asset_list(data-bind="foreach:assets")
-              li
-                a(data-bind="attr:{href:path, target:blank}")
-                  img(data-bind="attr:{src:square}")
-                span.delete_button
-                  img(src="/images/delete.png")
-                  span Delete File
-                div.confirm_box
-                  span Delete this file?
-                  span.delete(data-bind="click:delete_file") Yes
-                  span.cancel No
+    div.contests
+      header
+        h1.current My Current Contests
+      ul.contest_list(data-bind="foreach:my_contests")
+        li(data-bind="visible:current_contest")
+          header
+            a(data-bind="attr:{href:url}")
+              h1(data-bind="text:name")
+            span.button.edit_contest
+              img(src="/images/pencil.png")
+              span Edit Contest
+            h3(data-bind="text:when_ends")
+              
+          p(data-bind="text:description")
+          ul.asset_list(data-bind="foreach:assets")
+            li
+              a(data-bind="attr:{href:path, target:blank}")
+                img(data-bind="attr:{src:square}")
+              span.delete_button
+                img(src="/images/delete.png")
+                span Delete File
+              div.confirm_box
+                span Delete this file?
+                span.delete(data-bind="click:delete_file") Yes
+                span.cancel No
 
-            section
-              section.add_file_form.modal
-                span.close_box X
-                form(data-bind="attr:{action:url}", method="post", enctype="multipart/form-data")
-                  ul
-                    li
-                      label(for="submission") Image
-                      input.newfile(type="file", name="image", id="image")
-                      input(type="hidden", name="_method", value="put")
-                    li
-                      button(type="submit") Submit
-              section.edit_contest_form.modal
-                span.close_box X
-                form
-                  ul
-                    li
-                      label(for="name") Name
-                      input(type="text", name="name", data-bind="value:name")
-                    li
-                      label(for="expires") End Date
-                      input(type="text", name="expires", class="ends", data-bind="value:end_date")
-                    li
-                      label(for="description") Description
-                      textarea(name="description", data-bind="value:description")
-                      input(type="hidden", data-bind="value:id")
-                    li
-                      button(data-bind="click:edit_contest") Submit
-              a.add_new_files Add Files
-          hr       
+          section
+            section.add_file_form.modal
+              span.close_box X
+              form(data-bind="attr:{action:url}", method="post", enctype="multipart/form-data")
+                ul
+                  li
+                    label(for="submission") Image
+                    input.newfile(type="file", name="image", id="image")
+                    input(type="hidden", name="_method", value="put")
+                  li
+                    button(type="submit") Submit
+            section.edit_contest_form.modal
+              span.close_box X
+              form
+                ul
+                  li
+                    label(for="name") Name
+                    input(type="text", name="name", data-bind="value:name")
+                  li
+                    label(for="expires") End Date
+                    input(type="text", name="expires", class="ends", data-bind="value:end_date")
+                  li
+                    label(for="description") Description
+                    textarea(name="description", data-bind="value:description")
+                    input(type="hidden", data-bind="value:id")
+                  li
+                    button(data-bind="click:edit_contest") Submit
+            a.add_new_files Add Files
+        hr       
 
   - if (is_logged_in)
     != partial("components/layout/contest_add")
