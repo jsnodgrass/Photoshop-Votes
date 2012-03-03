@@ -1,11 +1,11 @@
 extends ../layouts/layout
 
 block subject
-  header#subject
+  header#subject.wrap
     h1 Account
 
 block content
-  section#main.users-env
+  section#main.users-env.wrap
 
     .row
       .span3
@@ -18,12 +18,16 @@ block content
             label(for="name") Name
             .input: input(type='text', name='name', placeholder='name', value=current_user.name)
           .clearfix
+            label(for="avatar") Avatar Image
+            .input: input(type='file', name='avatar', placeholder='image')
+          .clearfix
             label(for="about") About Me
             .input
               textarea.xxlarge(name='about') #{current_user.about}
               span.help-block Give us a reason to remember you
           .clearfix
             .input
+              input(type="hidden", method="put")
               input.btn.primary(type="submit", value="Save")
 
     .row

@@ -1,0 +1,10 @@
+section.add_file_form.modal
+  span.close_box X
+  form(action="/contests/"+contest._id, method="post", enctype="multipart/form-data")
+    ul
+      li
+        label(for="submission") Image
+        input.newfile(type="file", name="image", id="image")
+        input(type="hidden", name="_method", value="put")
+      li
+        button(type="submit") Submit

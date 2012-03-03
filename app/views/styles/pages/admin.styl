@@ -1,0 +1,68 @@
+.user_table
+  padding 0
+  li
+    padding 5px 0
+    display list
+    &.heading
+      background-color #aaa
+      border-radius 13px
+    .user_list
+      margin 0
+      li
+        display inline-block
+        width 220px
+        &.admin,&.contest_admin
+          cursor pointer
+          color red
+          &.yes
+            color green
+
+h1.current
+  margin 10px auto
+  display block
+  text-align center
+
+#contest_wrapper
+  position relative
+  header 
+    width 50%
+  a 
+    text-decoration none
+    color #666
+    cursor pointer 
+
+  #new_contest
+    position absolute
+    top 15px
+    right 15px       
+
+  .asset_list
+    padding 0
+    li
+      display inline-block
+      box-shadow 0 0 5px #000
+      border 1px solid #888
+      padding 0
+      margin 10px 25px
+      position relative
+
+      .confirm_box
+        position absolute
+        top 5px
+        right 5px
+
+  .contest_list
+    padding 0 10px
+    li  
+      position relative
+
+      .edit_contest
+        position absolute
+        right -5px 
+        top -5px
+        img
+          opacity 0.8
+          transition(all,.3s,ease-in-out)
+        &:hover
+          img
+            opacity 1

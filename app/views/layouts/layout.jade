@@ -1,32 +1,23 @@
 !!! 5
 html
-  head
-    meta(charset="utf-8")
-    title
-      block title
-        | New node project
-    block styles
-      //link(rel='stylesheet', href='/styles/layout.css' )
-      link(rel='stylesheet', href='/vendor/bootstrap/bootstrap.css' )
-      link(rel='stylesheet', href='/styles/main.css' )
-
+  != partial("components/layout/head")
 body(class = (is_logged_in) ? "logged-in" : "not-logged-in")
-
+  div.popup_background
   #binder.container
 
-    block navbar
+    #navbar
       include ../includes/navbar
 
     != messages()
 
     block subject
       header#subject
-        h1 Node Boilerplate
+        h1 Vote for the best!!
 
     block content
 
     block foot
       footer
-        p &copy;2011 Yeah, great footer!
+        p &copy;2011 Snodgrass Inc
 
     block scripts

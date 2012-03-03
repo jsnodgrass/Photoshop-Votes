@@ -1,0 +1,15 @@
+section.edit_contest_form.modal
+  span.close_box X
+  form(action="/contests/"+user._id, method="post")
+    ul
+      li
+        label(for="name" data-bind="value:name") Name
+        input(type="text", name="name")
+      li
+        label(for="expires"data-bind="value:end_date") End Date
+        input(type="text", name="expires", id="ends")
+      li
+        label(for="description"data-bind="value:description") Description
+        textarea(name="description")
+      li
+        button(type="submit") Submit

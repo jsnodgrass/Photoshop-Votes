@@ -1,0 +1,34 @@
+extends ../layouts/layout
+
+block subject
+  header#subject.wrap
+    h1 Submissions
+
+block content
+  section.wrap
+    span
+      h1 Contest ends 2/15/2012 at 10am, so vote soon!!
+    
+    span.leader_header
+      h2 Leaders
+         
+    ul.image_list(data-bind="foreach: submissions")
+      li.images 
+        div.vote_count
+          span Votes
+          span.votes(data-bind="text:votes")
+        div.bottom_arrow
+        img.thumbs(data-bind="attr:{src:thumbs}")
+        div.fullsize
+          img(data-bind="attr:{src:image}")
+          div.voter(data-bind='click:voteHandler') click here to vote for this picture
+          input(type="hidden", data-bind="value:id")
+
+div.popup_background
+
+block scripts
+  != embed_json(contests, 'contests')
+  script
+    var ContestVM = new Contest(contests);
+    ko.applyBindings(ContestVM);
+  

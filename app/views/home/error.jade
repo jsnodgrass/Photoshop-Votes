@@ -1,3 +1,11 @@
-h1.error #{error}
-p 
-  #{message}
+extends ../layouts/layout
+
+block subject
+  header#subject
+    h1.error #{error}
+
+block content
+  section#main
+    p 
+      #{message}
+    p Either you reached this page in error, or you were doing something you shouldn't have. Please try again later.

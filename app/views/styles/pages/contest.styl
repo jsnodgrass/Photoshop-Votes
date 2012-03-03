@@ -1,0 +1,157 @@
+#main 
+  position relative
+.file_list
+  display block
+  //height 260px
+  li 
+    display inline-block
+    height 250px
+    width 250px
+    text-align center
+    a 
+      text-decoration none
+      color #999
+      .contest_thumb_list
+        position relative
+        li
+          transition(all,.5s, ease-in-out) 
+          position absolute
+          top 0
+          left 0
+          img 
+            border 2px solid #eee
+          &:nth-child(1),&:nth-child(4),&:nth-child(7)
+            transform rotate(4deg)
+            &:hover
+              transform rotate(0deg)
+          &:nth-child(2),&:nth-child(5),&:nth-child(8)
+            transform rotate(-3deg)
+            &:hover
+              transform rotate(0deg)
+          &:nth-child(3),&:nth-child(6),&:nth-child(9)
+            transform rotate(1deg)
+            &:hover
+              transform rotate(0deg)     
+
+#contest_wrapper
+  background-color #aaa
+  box-shadow 0 0 10px #333
+  border-radius 20px
+  padding 10px
+.submissions
+  position relative
+  #new_submission
+    position absolute
+    top 0
+    right 0
+.leader_header
+  text-align center
+  width 100%
+  text-decoration underline
+
+.image_list
+  margin 0 auto
+  padding 10px 0 25px
+  text-align center
+  li.images:nth-child(1),li.images:nth-child(2),li.images:nth-child(3)
+    height 179px
+    margin 10px 60px 50px
+    padding 0
+    .thumbs
+      width 175px
+    .vote_count
+      left 5px
+    .bottom_arrow
+      left 25px
+    .place
+      position absolute
+      top -5px
+      left -25px
+      width 250px
+      height 75px
+  li.images:nth-child(1)
+    .place
+      background url('/images/1st.png') no-repeat
+  li.images:nth-child(2)
+    .place
+      background url('/images/2nd.png') no-repeat
+  li.images:nth-child(3)
+    .place
+      background url('/images/3rd.png') no-repeat
+  li.images
+    display inline-block
+    margin 10px 20px
+    padding 0
+    position relative
+    height 104px
+    .thumbs
+      width 100px
+      cursor pointer
+      border 2px solid #333
+      box-shadow 0 0 5px #333
+    .vote_count
+      display none
+      position absolute
+      top -45px
+      left -33px
+      background-color #999
+      border-radius 10px
+      height 15px
+      width 150px
+      padding 10px
+      z-index 4
+      box-shadow 0 0 5px #666, inset 0 0 5px #111
+      span
+        float left
+      span.votes
+        float right
+
+    .bottom_arrow
+      display none
+      position absolute
+      top -15px
+      left 0
+      width 0px
+      height 0px
+      border-left 20px solid transparent
+      border-right 20px solid transparent
+      border-top 20px solid #999
+      z-index 5
+
+    .fullsize
+      display none
+      position fixed
+      top 10px
+      left 50%
+      z-index 5
+      box-shadow 0 0 25px #000
+      .pic_details
+        position absolute
+        bottom 10px
+        right 0px
+        text-align right
+        background-color rgba(100,100,100,0.6)
+        color #999
+        border-radius 10px 0 0 10px
+        ul 
+          padding 2px 10px
+      .voter
+        position absolute
+        top 0
+        right -105px
+        z-index 55
+        img
+          position absolute
+          top 2px 
+          left 3px
+    &.leaders
+      padding 10px 40px
+      .vote_count
+        left 3px
+      .bottom_arrow
+        left 35px
+
+  li.images a:hover
+      .bottom_arrow, .vote_count
+        display block
+        color black

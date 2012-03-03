@@ -27,5 +27,36 @@ module.exports = {
     }
     else req.is_self = false;
     return next();
+  },
+  is_admin: function(req, res, next) {
+    if(req.currentUser && req.currentUser.admin) return next();
+    else {
+      console.log('##########  oh on')
+      if(req.xhr) res.send({code:500,data:"You are not authorized!"})
+      else {
+        req.flash('error', 'You are not authorized!')
+        res.redirect('/');
+      }
+    }
+  },
+  is_contest_admin: function(req, res, next) {
+    if(req.currentUser && (req.currentUser.contest_admin || req.currentUser.admin)) return next()
+    else {
+      if(req.xhr) res.send({code:500,data:"You are not authorized!"})
+      else {
+        req.flash('error', 'You are not authorized!')
+        res.redirect('/');
+      }
+    }
   }
 };
+
+
+
+
+
+
+
+
+
+

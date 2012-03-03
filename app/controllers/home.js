@@ -9,7 +9,8 @@ exports = module.exports = {
   index: [
     filters.require_not_user,
     function(req, res, next) {
-      res.render('home/index');
+      res.redirect('/contests')
+      //res.render('home/index');
     }
   ],
   

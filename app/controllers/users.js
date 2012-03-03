@@ -20,15 +20,15 @@ exports = module.exports = {
   create: [
     function(req, res, next) {
       var user = new models.user(req.body);
-      console.log('req.body:', req.body);
+      //console.log('req.body:', req.body);
       user.save(function(err){
         if (err) {
-          console.log(err);
+          //console.log(err);
           req.flash(err);
           return next();
        }
         else {
-          req.flash('info', "Account created. Welcome to " + options.appTitle + "!");
+          req.flash('info', "Account created. Welcome to the Skookum Photoshop Contest!");
           return next();
         }
       });
@@ -41,7 +41,7 @@ exports = module.exports = {
   edit: [
     filters.require_self,
     function(req, res) {
-      res.render('users/edit');
+      res.render('users/edit', {user: req.user});
     }
   ],
 
@@ -49,6 +49,9 @@ exports = module.exports = {
   update: [
     filters.require_self,
     function(req, res) {
+      if(req.files.avatar) {
+        req.body.avatar = req.files.avatar
+      }
       console.log('req.user = ', req.user);
       models.user.updateById(req.user._id, req.body, function(err, updated_user) {
         if (updated_user) {

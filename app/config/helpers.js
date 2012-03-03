@@ -80,6 +80,14 @@ exports = module.exports = function() {
     is_logged_in: function(req, res) {
       return (typeof req.currentUser != 'undefined');
     },
+    is_admin: function(req, res) {
+      if(typeof req.currentUser != 'undefined') return req.currentUser.admin === true;
+      else return false;
+    },
+    is_contest_admin: function(req, res) {
+      if(typeof req.currentUser != 'undefined') return req.currentUser.contest_admin === true;
+      else return false;
+    },
     account_route: function(req, res) {
       if (req.currentUser) {
         return '/users/' + req.currentUser._id;

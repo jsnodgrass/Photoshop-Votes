@@ -1,0 +1,215 @@
+extends ../layouts/layout
+
+block subject
+  header#subject.wrap
+
+block content
+  section#main.wrap
+    header
+      h1.current User List
+    ul.user_table
+      li.heading
+        ul.user_list
+          li Name 
+          li Email
+          li Admin
+          li Contest Admin
+      each user in users
+        li
+          ul.user_list
+            li=user.name 
+            li.my_email=user.email
+            - if (user.admin) 
+              li.admin.yes Yes 
+            - else
+              li.admin No
+            - if (user.contest_admin) 
+              li.contest_admin.yes Yes 
+            - else
+              li.contest_admin No
+    
+    section#contest_wrapper
+      span#new_contest.button +
+        span New Contest
+
+      div.contests
+        header
+          h1.current My Current Contests
+        ul.contest_list(data-bind="foreach:my_contests")
+          li(data-bind="visible:current_contest")
+            span.button.edit_contest
+              img(src="/images/pencil.png")
+              span Edit Contest
+            header
+              a(data-bind="attr:{href:url}")
+                h1(data-bind="text:name")
+              h3(data-bind="text:when_ends")
+                
+            p(data-bind="text:description")
+            ul.asset_list(data-bind="foreach:assets")
+              li
+                a(data-bind="attr:{href:path, target:blank}")
+                  img(data-bind="attr:{src:square}")
+                span.delete_button
+                  img(src="/images/delete.png")
+                  span Delete File
+                div.confirm_box
+                  span Delete this file?
+                  span.delete(data-bind="click:delete_file") Yes
+                  span.cancel No
+
+
+
+            section
+              section.add_file_form.modal
+                span.close_box X
+                form(data-bind="attr:{action:url}", method="post", enctype="multipart/form-data")
+                  ul
+                    li
+                      label(for="submission") Image
+                      input.newfile(type="file", name="image", id="image")
+                      input(type="hidden", name="_method", value="put")
+                    li
+                      button(type="submit") Submit
+              section.edit_contest_form.modal
+                span.close_box X
+                form
+                  ul
+                    li
+                      label(for="name") Name
+                      input(type="text", name="name", data-bind="value:name")
+                    li
+                      label(for="expires") End Date
+                      input(type="text", name="expires", class="ends", data-bind="value:end_date")
+                    li
+                      label(for="description") Description
+                      textarea(name="description", data-bind="value:description")
+                      input(type="hidden", data-bind="value:id")
+                    li
+                      button(data-bind="click:edit_contest") Submit
+              a.add_new_files Add Files
+          hr
+
+      div.contests
+        header
+          h1.current All Other Current Contests
+        ul.contest_list(data-bind="foreach:current_contests")
+          li
+            span.button.edit_contest
+              img(src="/images/pencil.png")
+              span Edit Contest
+            header
+              a(data-bind="attr:{href:url}")
+                h1(data-bind="text:name")
+              h3(data-bind="text:when_ends")
+                
+            p(data-bind="text:description")
+            ul.asset_list(data-bind="foreach:assets")
+              li
+                a(data-bind="attr:{href:path, target:blank}")
+                  img(data-bind="attr:{src:square}")
+                span.delete_button
+                  img(src="/images/delete.png")
+                  span Delete File
+                div.confirm_box
+                  span Delete this file?
+                  span.delete(data-bind="click:delete_file") Yes
+                  span.cancel No
+
+
+            section
+              section.add_file_form.modal
+                span.close_box X
+                form(data-bind="attr:{action:url}", method="post", enctype="multipart/form-data")
+                  ul
+                    li
+                      label(for="submission") Image
+                      input.newfile(type="file", name="image", id="image")
+                      input(type="hidden", name="_method", value="put")
+                    li
+                      button(type="submit") Submit
+              section.edit_contest_form.modal
+                span.close_box X
+                form
+                  ul
+                    li
+                      label(for="name") Name
+                      input(type="text", name="name", data-bind="value:name")
+                    li
+                      label(for="expires") End Date
+                      input(type="text", name="expires", class="ends", data-bind="value:end_date")
+                    li
+                      label(for="description") Description
+                      textarea(name="description", data-bind="value:description")
+                      input(type="hidden", data-bind="value:id")
+                    li
+                      button(data-bind="click:edit_contest") Submit
+              a.add_new_files Add Files
+          hr
+
+
+  - if (is_logged_in)
+    != partial("components/layout/contest_add")
+
+block scripts
+  != embed_json(contests, 'contests')
+  != embed_json(user, 'user')
+    script
+      var AppVM = new App(contests, user)
+      ko.applyBindings(AppVM)
+      $("#starts, #ends, .ends").datepicker();
+      $("li.admin").click(function(){
+        var self = $(this)
+        var user_email = self.parent().find(".my_email").text()
+        $.ajax({
+          url:'/admin',
+          type: 'put',
+          data: {'email':user_email,'data':'admin'},
+          success: function(data) {
+            console.log(data)
+            if(data.code === 200) {
+              if(data.data.change) self.text('Yes').addClass('yes')
+              else self.text('No').removeClass('yes')
+            }
+            else alert(data.data);
+          }
+        })
+      })
+      $("li.contest_admin").click(function(){
+        var self = $(this)
+        var user_email = self.parent().find(".my_email").text()
+        $.ajax({
+          url:'/admin',
+          type: 'put',
+          data: {'email':user_email,'data':'contest_admin'},
+          success: function(data) {
+            console.log(data)
+            if(data.code === 200) {
+              if(data.data.change) self.text('Yes').addClass('yes')
+              else self.text('No').removeClass('yes')
+            }
+            else alert(data.data);
+          }
+        })
+      })
+
+      $("#new_contest").click(function(){
+        $("section.add_contest_form").fadeIn('fast');
+        $("div.popup_background").fadeIn('fast');
+      })
+
+      $("a.add_new_files").click(function(){
+        $(this).parent().find("section.add_file_form").fadeIn('fast');
+        $("div.popup_background").fadeIn('fast');
+      })
+      $("span.edit_contest").click(function(){
+        $(this).parent().parent().find("section > section.edit_contest_form").fadeIn('fast');
+        $("div.popup_background").fadeIn('fast');
+      })
+
+      $("span.delete_button").click(function(){
+        $(this).parent().find(".confirm_box").css({'height':'65px','width':'145px','opacity':'1','padding':'10px'})
+      })
+      $("span.cancel").click(function(){
+        $(this).parent().css({'height':'0px','width':'100px','opacity':'0','padding':'0px'});
+      })  

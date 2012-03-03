@@ -1,0 +1,66 @@
+extends ../layouts/layout
+
+block subject
+  header#subject.wrap
+    h1 Current Contest
+
+block content
+  - if (is_logged_in)
+    != partial("components/layout/submission_add")
+    
+  section#main.wrap
+    section#contest_wrapper
+      header
+        h1(data-bind="text:name")
+        h3(data-bind="text:end_date")
+          
+      p(data-bind="text:description")
+      - if (contest.files)
+        ul.asset_list(data-bind="foreach:assets")
+          li
+            a(data-bind="attr:{href:path, target:blank}")
+              img(data-bind="attr:{src:square}")
+
+    section.submissions
+      - if(is_logged_in)
+        p Look through the submissions and find one you like. Then vote for it. 
+          strong You can only vote once!
+        span#new_submission.button(data-bind="visible:current_contest") +
+          span New submission    
+      span.leader_header
+        h1(data-bind="visible:current_contest") Leaders
+        h1(data-bind="visible:contest_over") Results
+           
+      ul.image_list(data-bind="foreach:submissions_sort, visible:has_submissions")
+        li.images
+          a 
+            div.vote_count
+              span Votes
+              span.votes(data-bind="text:votes")
+            div.bottom_arrow
+            img.thumbs(data-bind="attr:{src:thumbs}")
+            div.place 
+          div.fullsize
+            img(data-bind="attr:{src:image}")
+            - if (is_logged_in)
+              div.voter.button(data-bind='click:voteHandler,visible:can_vote')
+                img(src="/images/checkmark.png")
+                span Click to vote
+              input(type="hidden", data-bind="value:id")
+            div.pic_details(data-bind='visible:show_details')
+              ul
+                li(data-bind="text:submitted")
+                li(data-bind="text:uploaded")
+
+block scripts
+  != embed_json(contest, 'contest')
+    script
+      var ContestVM = new Contest(contest);
+      ko.applyBindings(ContestVM);
+
+      $("#new_contest").click(function(){
+        $("section.add_contest_form").fadeIn('fast');
+        $("div.popup_background").fadeIn('fast');
+      })
+
+  

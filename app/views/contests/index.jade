@@ -1,0 +1,29 @@
+extends ../layouts/layout
+
+block subject
+  header#subject.wrap
+    
+
+block content
+  section#main.wrap
+    h2 Current Contests        
+      ul.file_list
+        each contest in current_contests
+          li
+            a(href="contests/"+contest._id)
+              h5=contest.name
+              ul.contest_thumb_list
+                each image in contest.files
+                  li
+                    img(src=image.square)
+
+    h2 Old Contests
+      ul.file_list
+        each contest in contests
+          li
+            a(href="contests/"+contest._id)
+              h5=contest.name
+              ul.contest_thumb_list
+                each image in contest.files
+                  li
+                    img(src=image.square)   
