@@ -1,13 +1,15 @@
 
 exports = module.exports = function() {
   
-  // Home
+  // 
+  server.get('/', controllers.contests.index);
   server.resource(controllers.home);
 
   // Login Sessions
   server.resource('sessions', controllers.session)
     .map('all', '/login', 'new')
     .map('all', '/logout', 'destroy');
+
 
   // Users
   server.resource('users', controllers.users);
@@ -19,7 +21,7 @@ exports = module.exports = function() {
   server.put('/submissions', controllers.submissions.update);
 
   // Contests
-  server.get('/', controllers.contests.index);
+  
   server.get('/contests', controllers.contests.index);
   server.get('/contests/admin', controllers.contests.admin);
   server.post('/contests/:user_id', controllers.contests.create);

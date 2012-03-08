@@ -581,6 +581,11 @@ h1 {
   top: 0;
   right: 0;
 }
+.submissions .no_submissions {
+  font-size: 30px;
+  color: #aaa;
+  text-align: center;
+}
 .leader_header {
   text-align: center;
   width: 100%;
@@ -631,14 +636,16 @@ h1 {
 .image_list li.images:nth-child(3) .place {
   background: url("/images/3rd.png") no-repeat;
 }
-.image_list li.images {
+.image_list li.images,
+.image_list li.my_images {
   display: inline-block;
   margin: 10px 20px;
   padding: 0;
   position: relative;
   height: 104px;
 }
-.image_list li.images .thumbs {
+.image_list li.images .thumbs,
+.image_list li.my_images .thumbs {
   width: 100px;
   cursor: pointer;
   border: 2px solid #333;
@@ -648,7 +655,8 @@ h1 {
   -o-box-shadow: 0 0 5px #333;
   box-shadow: 0 0 5px #333;
 }
-.image_list li.images .vote_count {
+.image_list li.images .vote_count,
+.image_list li.my_images .vote_count {
   display: none;
   position: absolute;
   top: -45px;
@@ -663,19 +671,26 @@ h1 {
   width: 150px;
   padding: 10px;
   z-index: 4;
-  -webkit-box-shadow: 0 0 5px #666, inset 0 0 5px #111;
-  -moz-box-shadow: 0 0 5px #666, inset 0 0 5px #111;
-  -ms-box-shadow: 0 0 5px #666, inset 0 0 5px #111;
-  -o-box-shadow: 0 0 5px #666, inset 0 0 5px #111;
-  box-shadow: 0 0 5px #666, inset 0 0 5px #111;
+  -webkit-box-shadow: 0 0 3px #000;
+  -moz-box-shadow: 0 0 3px #000;
+  -ms-box-shadow: 0 0 3px #000;
+  -o-box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px #000;
 }
-.image_list li.images .vote_count span {
+.image_list li.images .vote_count span.name,
+.image_list li.my_images .vote_count span.name {
+  text-align: left;
   float: left;
+  width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.image_list li.images .vote_count span.votes {
+.image_list li.images .vote_count span.votes,
+.image_list li.my_images .vote_count span.votes {
   float: right;
 }
-.image_list li.images .bottom_arrow {
+.image_list li.images .bottom_arrow,
+.image_list li.my_images .bottom_arrow {
   display: none;
   position: absolute;
   top: -15px;
@@ -687,7 +702,8 @@ h1 {
   border-top: 20px solid #999;
   z-index: 5;
 }
-.image_list li.images .fullsize {
+.image_list li.images .fullsize,
+.image_list li.my_images .fullsize {
   display: none;
   position: fixed;
   top: 10px;
@@ -699,44 +715,53 @@ h1 {
   -o-box-shadow: 0 0 25px #000;
   box-shadow: 0 0 25px #000;
 }
-.image_list li.images .fullsize .pic_details {
+.image_list li.images .fullsize .pic_details,
+.image_list li.my_images .fullsize .pic_details {
   position: absolute;
-  bottom: 10px;
-  right: 0px;
-  text-align: right;
-  background-color: rgba(100,100,100,0.60);
-  color: #999;
-  -webkit-border-radius: 10px 0 0 10px;
-  -moz-border-radius: 10px 0 0 10px;
-  -ms-border-radius: 10px 0 0 10px;
-  -o-border-radius: 10px 0 0 10px;
-  border-radius: 10px 0 0 10px;
+  top: 0;
+  right: -95px;
+  text-align: center;
+  background-color: #aaa;
+  color: #333;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
 }
-.image_list li.images .fullsize .pic_details ul {
+.image_list li.images .fullsize .pic_details ul,
+.image_list li.my_images .fullsize .pic_details ul {
   padding: 2px 10px;
 }
-.image_list li.images .fullsize .voter {
+.image_list li.images .fullsize .voter,
+.image_list li.my_images .fullsize .voter {
   position: absolute;
   top: 0;
   right: -105px;
   z-index: 55;
 }
-.image_list li.images .fullsize .voter img {
+.image_list li.images .fullsize .voter img,
+.image_list li.my_images .fullsize .voter img {
   position: absolute;
   top: 2px;
   left: 3px;
 }
-.image_list li.images.leaders {
+.image_list li.images.leaders,
+.image_list li.my_images.leaders {
   padding: 10px 40px;
 }
-.image_list li.images.leaders .vote_count {
+.image_list li.images.leaders .vote_count,
+.image_list li.my_images.leaders .vote_count {
   left: 3px;
 }
-.image_list li.images.leaders .bottom_arrow {
+.image_list li.images.leaders .bottom_arrow,
+.image_list li.my_images.leaders .bottom_arrow {
   left: 35px;
 }
 .image_list li.images a:hover .bottom_arrow,
-.image_list li.images a:hover .vote_count {
+.image_list li.my_images a:hover .bottom_arrow,
+.image_list li.images a:hover .vote_count,
+.image_list li.my_images a:hover .vote_count {
   display: block;
   color: #000;
 }

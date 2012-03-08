@@ -24,8 +24,11 @@ exports = module.exports = {
   show: [
     function(req,res){
       //console.log(new Date());
+      var user;
+      if(req.currentUser) user = {_id:req.currentUser._id, name:req.currentUser.name};
+      else user = {};
       models.contest.findOne().where('_id', req.params.contest_id).run(function(err, contest) {
-        res.render('contests/show', {contest:contest, user:req.currentUser});
+        res.render('contests/show', {contest:contest, user:user});
       })
     }  
   ],

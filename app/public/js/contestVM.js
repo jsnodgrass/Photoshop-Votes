@@ -1,10 +1,12 @@
-var Contest = function(options) {
+var Contest = function(options, user) {
   options = options || {};
-  //console.log(options);
+  this.user = user || {};
+  //console.log(this.user);
 
   this.id = ko.observable(options._id);
   this.name = ko.observable(options.name);
   this.submissions = ko.observableArray([]);
+  this.my_submissions = ko.observableArray([]);
   this.starts = ko.observable(create_date(options.starts));
   this.contest_start = ko.observable(options.starts);
   this.contest_end = ko.observable(options.expires) || null;
@@ -85,6 +87,10 @@ var Contest = function(options) {
     return this.submissions().length > 0;
   },this)
 
+  this.has_own_submissions = ko.dependentObservable(function() {
+    return this.my_submissions().length < 1;
+  },this)
+
   this.url = ko.dependentObservable(function() {
     return "/contests/"+this.id();
   },this)
@@ -93,6 +99,9 @@ var Contest = function(options) {
 
 Contest.prototype.addSubmission = function(s) {
   this.submissions.push(new Submission(s, this));
+
+  if(s.owner._id === this.user._id)
+    this.my_submissions.push(new Submission(s, this));
 };
 
 Contest.prototype.addAsset = function(s) {

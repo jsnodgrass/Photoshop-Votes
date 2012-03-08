@@ -1,13 +1,19 @@
 var Submission = function(options, container) {
   options = options || {};
+  this.container = container || {};
+  //console.log(this.container.user)
 
   this.id = ko.observable(options._id);
   this.name = ko.observable(options.name);
   this.thumbs = ko.observable(options.image[0].square);
   this.image = ko.observable(options.image[0].path);
-  this.votes = ko.observable(options.votes || 0);
+  this.vote_count = ko.observable(options.votes || 0);
   this.owner_name = ko.observable(options.owner.name);
   this.upload = ko.observable(options.updated_at);
+
+  this.votes = ko.dependentObservable(function() {
+    return 'Votes ' + this.vote_count();
+  }, this)
 
   this.can_vote = ko.dependentObservable(function() {
     var now = new Date();

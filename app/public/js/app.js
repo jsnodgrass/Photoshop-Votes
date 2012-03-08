@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
   // events to show and hide current submissions
-  $(".images").live('click', function(){
+  $(".images, .my_images").live('click', function(){
     var fullsize = $(this).find(".fullsize");
     var image = $(this).find(".fullsize > img");
     if(fullsize.is(":hidden")) {
