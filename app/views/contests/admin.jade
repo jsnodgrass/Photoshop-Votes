@@ -11,6 +11,7 @@ block content
     div.contests
       header
         h1.current My Current Contests
+      hr
       ul.contest_list(data-bind="foreach:my_contests")
         li(data-bind="visible:current_contest")
           header
@@ -62,7 +63,7 @@ block content
                   li
                     button(data-bind="click:edit_contest") Submit
             a.add_new_files Add Files
-        hr       
+          hr       
 
   - if (is_logged_in)
     != partial("components/layout/contest_add")
@@ -84,7 +85,7 @@ block scripts
         $("div.popup_background").fadeIn('fast');
       })
       $("span.edit_contest").click(function(){
-        $(this).parent().parent().find("section > section.edit_contest_form").fadeIn('fast');
+        $(this).parent().find("section > section.edit_contest_form").fadeIn('fast');
         $("div.popup_background").fadeIn('fast');
       }) 
       $("span.delete_button").click(function(){

@@ -10,13 +10,8 @@ exports = module.exports = {
 
   index: [ 
     function(req,res){
-      //console.log(req.currentUser._id);
-      var now = new Date();
-      models.contest.find().where('starts').$lte(now).$or([{'expires':{$gt:now}},{'expires':''}]).run(function(err,current){
-        models.contest.find().where('expires').$lt(now).desc('expires').run(function(err,contests){
-          //console.log(contests)
-          res.render('contests/index', {current_contests:current, contests:contests, user:req.currentUser});
-        })
+      models.contest.find().run(function(err,contests){
+        res.render('contests/index', {contests:contests, user:req.currentUser});
       })
     }  
   ],

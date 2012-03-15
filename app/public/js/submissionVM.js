@@ -40,18 +40,28 @@ var Submission = function(options, container) {
   this.submitted = ko.dependentObservable(function(){
     return "Submitted by " + this.owner_name();
   },this)
+
+  // this.socket = io.connect('http://localhost:8080');
+  // var self = this;
+  // this.socket.on('vote_count', function (data) {
+  //   // console.log(data);
+  //   self.vote_count(data.votes)
+  // });
   
 };
 
 Submission.prototype.voteHandler = function(){ 
   var self = this;
+  
   $.ajax({
     url: '/submissions',
     type: 'put',
     data: {id:self.id()},
     success: function(data){
       if(data.code === 200) {
-        self.votes(data.votes);
+        //console.log(data);
+        //self.socket.emit('vote',{'id':self.id()})
+        self.vote_count(data.votes);
         $(".fullsize").fadeOut();
         $("div.popup_background").fadeOut();
       } else {

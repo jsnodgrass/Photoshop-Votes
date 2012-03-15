@@ -86,7 +86,7 @@ hr {
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
-  margin: 1em 0;
+  margin: 17px 0;
   padding: 0;
 }
 ins {
@@ -470,11 +470,17 @@ h1 {
 #navbar .topbar-wrapper span {
   position: absolute;
   top: 45px;
-  right: 25px;
+  right: 32px;
   color: #fff;
 }
 #main {
   position: relative;
+}
+.no_contests {
+  font-size: 30px;
+  color: #aaa;
+  text-align: center;
+  cursor: pointer;
 }
 .file_list {
   display: block;
@@ -561,11 +567,11 @@ h1 {
 }
 #contest_wrapper {
   background-color: #aaa;
-  -webkit-box-shadow: 0 0 10px #333;
-  -moz-box-shadow: 0 0 10px #333;
-  -ms-box-shadow: 0 0 10px #333;
-  -o-box-shadow: 0 0 10px #333;
-  box-shadow: 0 0 10px #333;
+  -webkit-box-shadow: 0 1px 2px #333;
+  -moz-box-shadow: 0 1px 2px #333;
+  -ms-box-shadow: 0 1px 2px #333;
+  -o-box-shadow: 0 1px 2px #333;
+  box-shadow: 0 1px 2px #333;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
@@ -585,6 +591,7 @@ h1 {
   font-size: 30px;
   color: #aaa;
   text-align: center;
+  cursor: pointer;
 }
 .leader_header {
   text-align: center;
@@ -622,9 +629,9 @@ h1 {
 .image_list li.images:nth-child(2) .place,
 .image_list li.images:nth-child(3) .place {
   position: absolute;
-  top: -5px;
-  left: -25px;
-  width: 250px;
+  top: -3px;
+  right: 0;
+  width: 42px;
   height: 75px;
 }
 .image_list li.images:nth-child(1) .place {
@@ -662,20 +669,20 @@ h1 {
   top: -45px;
   left: -33px;
   background-color: #999;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
   height: 15px;
   width: 150px;
   padding: 10px;
   z-index: 4;
-  -webkit-box-shadow: 0 0 3px #000;
-  -moz-box-shadow: 0 0 3px #000;
-  -ms-box-shadow: 0 0 3px #000;
-  -o-box-shadow: 0 0 3px #000;
-  box-shadow: 0 0 3px #000;
+  -webkit-box-shadow: 0 1px 0 #888;
+  -moz-box-shadow: 0 1px 0 #888;
+  -ms-box-shadow: 0 1px 0 #888;
+  -o-box-shadow: 0 1px 0 #888;
+  box-shadow: 0 1px 0 #888;
 }
 .image_list li.images .vote_count span.name,
 .image_list li.my_images .vote_count span.name {
@@ -706,7 +713,7 @@ h1 {
 .image_list li.my_images .fullsize {
   display: none;
   position: fixed;
-  top: 10px;
+  top: 50%;
   left: 50%;
   z-index: 5;
   -webkit-box-shadow: 0 0 25px #000;
@@ -719,15 +726,16 @@ h1 {
 .image_list li.my_images .fullsize .pic_details {
   position: absolute;
   top: 0;
-  right: -95px;
+  left: 102%;
+  min-width: 100px;
   text-align: center;
   background-color: #aaa;
   color: #333;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
 }
 .image_list li.images .fullsize .pic_details ul,
 .image_list li.my_images .fullsize .pic_details ul {
@@ -779,6 +787,11 @@ h1 {
   -ms-border-radius: 13px;
   -o-border-radius: 13px;
   border-radius: 13px;
+  -webkit-box-shadow: 0 1px 2px #333;
+  -moz-box-shadow: 0 1px 2px #333;
+  -ms-box-shadow: 0 1px 2px #333;
+  -o-box-shadow: 0 1px 2px #333;
+  box-shadow: 0 1px 2px #333;
 }
 .user_table li .user_list {
   margin: 0;
@@ -822,11 +835,11 @@ h1.current {
 }
 #contest_wrapper .asset_list li {
   display: inline-block;
-  -webkit-box-shadow: 0 0 5px #000;
-  -moz-box-shadow: 0 0 5px #000;
-  -ms-box-shadow: 0 0 5px #000;
-  -o-box-shadow: 0 0 5px #000;
-  box-shadow: 0 0 5px #000;
+  -webkit-box-shadow: 0 0 6px -2px #666;
+  -moz-box-shadow: 0 0 6px -2px #666;
+  -ms-box-shadow: 0 0 6px -2px #666;
+  -o-box-shadow: 0 0 6px -2px #666;
+  box-shadow: 0 0 6px -2px #666;
   border: 1px solid #888;
   padding: 0;
   margin: 10px 25px;
@@ -954,11 +967,11 @@ section.modal ul li {
   position: absolute;
   top: 35px;
   left: 0;
-  -webkit-box-shadow: 0 0 5px #000;
-  -moz-box-shadow: 0 0 5px #000;
-  -ms-box-shadow: 0 0 5px #000;
-  -o-box-shadow: 0 0 5px #000;
-  box-shadow: 0 0 5px #000;
+  -webkit-box-shadow: inset 0 0 1px #fff;
+  -moz-box-shadow: inset 0 0 1px #fff;
+  -ms-box-shadow: inset 0 0 1px #fff;
+  -o-box-shadow: inset 0 0 1px #fff;
+  box-shadow: inset 0 0 1px #fff;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -974,6 +987,11 @@ section.modal ul li {
 .button.voter span {
   top: 105px;
   font-size: 16px;
+  -webkit-box-shadow: inset 0 0 3px #666;
+  -moz-box-shadow: inset 0 0 3px #666;
+  -ms-box-shadow: inset 0 0 3px #666;
+  -o-box-shadow: inset 0 0 3px #666;
+  box-shadow: inset 0 0 3px #666;
 }
 .button.voter:hover {
   -webkit-box-shadow: 0 0 25px -10px #fff;
@@ -987,11 +1005,11 @@ section.modal ul li {
   width: 150px;
 }
 .button:hover {
-  -webkit-box-shadow: 0 0 15px -3px #000;
-  -moz-box-shadow: 0 0 15px -3px #000;
-  -ms-box-shadow: 0 0 15px -3px #000;
-  -o-box-shadow: 0 0 15px -3px #000;
-  box-shadow: 0 0 15px -3px #000;
+  -webkit-box-shadow: 0 0 10px -3px #000;
+  -moz-box-shadow: 0 0 10px -3px #000;
+  -ms-box-shadow: 0 0 10px -3px #000;
+  -o-box-shadow: 0 0 10px -3px #000;
+  box-shadow: 0 0 10px -3px #000;
 }
 .button:hover span {
   height: 15px;
@@ -1137,15 +1155,15 @@ section.modal ul li {
   box-shadow: inset 0 0 5px #fff;
 }
 body {
-  background-color: #ddd;
+  background-color: #e5e5e5;
 }
 #binder {
   background-color: #ccc;
-  -webkit-box-shadow: 0px 0px 25px #aaa, inset 0 0 10px #222;
-  -moz-box-shadow: 0px 0px 25px #aaa, inset 0 0 10px #222;
-  -ms-box-shadow: 0px 0px 25px #aaa, inset 0 0 10px #222;
-  -o-box-shadow: 0px 0px 25px #aaa, inset 0 0 10px #222;
-  box-shadow: 0px 0px 25px #aaa, inset 0 0 10px #222;
+  -webkit-box-shadow: inset 0 0 6px #999;
+  -moz-box-shadow: inset 0 0 6px #999;
+  -ms-box-shadow: inset 0 0 6px #999;
+  -o-box-shadow: inset 0 0 6px #999;
+  box-shadow: inset 0 0 6px #999;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -1184,4 +1202,8 @@ input {
 textarea {
   height: 150px;
   width: 200px;
+}
+hr.short {
+  width: 98%;
+  margin: 0 auto;
 }

@@ -17,24 +17,25 @@ exports = module.exports = {
   ],
 
   // Sign up POST
-  create: [
+  create: [ passport.authenticate('local', { failureRedirect: '/users/new' }),
     function(req, res, next) {
       var user = new models.user(req.body);
       //console.log('req.body:', req.body);
       user.save(function(err){
         if (err) {
-          //console.log(err);
+          console.log(err);
           req.flash(err);
-          return next();
-       }
+          //return next();
+        }
         else {
           req.flash('info', "Account created. Welcome to the Skookum Photoshop Contest!");
-          return next();
+          //return next();
         }
+        res.redirect('/');
       });
     },
-    passport.authenticate('local', { failureRedirect: '/sessions/login' }),
-    function (req, res) { res.redirect('/'); }
+    
+    //function (req, res) { res.redirect('/'); }
   ],
 
   // Account edit form

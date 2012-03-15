@@ -5,15 +5,31 @@ var App = function(options, user) {
   //console.log(options)
 
   this.current_contests = ko.observableArray([]);
+  this.all_current_contests = ko.observableArray([]);
   this.my_contests = ko.observableArray([]);
   this.future_contests = ko.observableArray([]);
   this.old_contests = ko.observableArray([]);
 
-  //for (var i = 0; i < options.length; i++) this.addContest(options[i]);
+  this.has_current_contests = ko.dependentObservable(function(){
+    return this.all_current_contests().length > 0;
+  }, this)
+
+  this.no_current_contests = ko.dependentObservable(function(){
+    return this.all_current_contests().length < 1;
+  }, this)
+
+  this.has_old_contests = ko.dependentObservable(function(){
+    return this.old_contests().length > 0;
+  }, this)
+
+  this.no_old_contests = ko.dependentObservable(function(){
+    return this.old_contests().length < 1;
+  }, this)
 
   this.loadContests(options, user);
 
 }
+
 
 App.prototype.addContest = function(contest,array) {
   array.push(new Contest(contest));
@@ -29,6 +45,10 @@ App.prototype.loadContests = function(options, user) {
     starts = new Date(options[i].starts);
     if(options[i].expires) ends = new Date(options[i].expires);
     else ends = false;
+
+    if(starts<now && (!ends || ends > now)) {
+      self.addContest(options[i],self.all_current_contests);
+    }
 
     if(options[i].owner._id === user._id) {
       self.addContest(options[i],self.my_contests);
