@@ -13,6 +13,7 @@ var Submission = new server.mongoose.Schema({
   description       : { type: String, trim: true },
   image             : [ models.schemas.attachment ],
   comments          : [],
+  voters            : [],
   votes             : Number
 });
 

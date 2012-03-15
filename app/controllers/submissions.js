@@ -46,29 +46,24 @@ exports = module.exports = {
       var sub_id = req.body.id;
       var user_id = req.currentUser._id+'';
       models.submission.findById(sub_id, function(err, submission) {
-        models.contest.findById(submission.contest, function(err, contest) {
+
           if(err) res.send ({err:err, code:500});
           else {
-            if(_.contains(contest.voters,user_id) === false) {
+            if(_.contains(submission.voters,user_id) === false) {
               if(!submission.votes) submission.votes = 0;
               submission.votes = submission.votes+1;
+              //submission.voters.push(user_id);
 
               submission.save(function(err) {
                 if(err) res.send ({err:err, code:500});
-                else {
-                  contest.voters.push(user_id);
-                  console.log(contest);
-                  contest.save(function(err) {
-                    if(err) res.send ({err:err, code:500});
-                    else res.send ({code:200, votes:submission.votes})
-                  })
-                }
-              })
+                else res.send({code:200, votes:submission.votes})
+              });
+
             } else {
-              res.send({code:500,err:"You can only vote once"});
+              res.send({code:500,err:"You can only vote for each submission once!"});
             }
           }
-        })
+
       })
     }
   ]

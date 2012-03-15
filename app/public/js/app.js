@@ -3,7 +3,7 @@ $(document).ready(function(){
    showErrors()
 
   // Click event for new submissions
-  $("#new_submission").click(function(){
+  $("#new_submission, div.no_submissions").click(function(){
     $("section.add_photo_form").fadeIn('fast');
     $("div.popup_background").fadeIn('fast');
   })
@@ -21,12 +21,36 @@ $(document).ready(function(){
       fullsize.fadeIn();
       $("div.popup_background").fadeIn();
     
-      var imagesize = image.width();
-      fullsize.css("margin-left",0-(imagesize/2)+'px')
+      var image_width = image.width();
+      var image_height = image.height();
+      var win_height = $(window).height();
+      var win_width = $(window).width();
+      var h_diff, w_diff;
       image.removeAttr('style')
-      if(image.height()+35>$(window).height()) {
-        image.height($(window).height()-45)
+
+      if(image_height+35 > win_height) {
+        h_diff = (image_height+45)-win_height;
+      } 
+      if(image_width+300 > win_width) {
+        w_diff = (image_width+300)-win_width;
+      } 
+
+      if(h_diff && w_diff) {
+        if(h_diff>w_diff) {
+          image.height(win_height-45);
+        } else {
+          image.width(win_width-300);
+        }
+      } else if (h_diff && !w_diff) {
+        image.height(win_height-45);
+      } else if (w_diff && !h_diff) {
+        image.width(win_width-300);
       }
+      fullsize.css("margin-left",0-(image.width()/2)+'px')
+      fullsize.css("margin-top",0-(image.height()/2)+'px')
+      // if(image.height()+35>$(window).height()) {
+      //   image.height($(window).height()-45)
+      // }
     }
   })
   $("div.popup_background, div.fullsize>img").click(function() {

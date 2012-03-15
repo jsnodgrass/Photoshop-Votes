@@ -51,7 +51,8 @@ Submission.prototype.voteHandler = function(){
     data: {id:self.id()},
     success: function(data){
       if(data.code === 200) {
-        self.votes(data.votes);
+        console.log(data);
+        self.vote_count(data.votes);
         $(".fullsize").fadeOut();
         $("div.popup_background").fadeOut();
       } else {

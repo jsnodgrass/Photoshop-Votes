@@ -15,7 +15,6 @@ var Contest = new server.mongoose.Schema({
   expires           : { type: Date },
   comments          : [],
   submissions       : [],
-  voters            : [],
   is_archived       : { type: Boolean }
 });
 
