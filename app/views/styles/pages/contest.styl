@@ -4,25 +4,27 @@
   font-size 30px
   color #aaa
   text-align center
-  cursor pointer
 .file_list
   display block
   //height 260px
+  margin 0
+  padding 20px 0
   li 
     display inline-block
-    height 250px
-    width 270px
+    padding 10px 30px
     text-align center
     a 
       text-decoration none
       color #999
       .contest_thumb_list
         position relative
+        padding 0
+        margin 0
         li
           transition(all,.5s, ease-in-out) 
-          position absolute
-          top 0
-          left 0
+          //position absolute
+          //top 0
+          //left 0
           img 
             border 2px solid #eee
           &:nth-child(1),&:nth-child(4),&:nth-child(7)

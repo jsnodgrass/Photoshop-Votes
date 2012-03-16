@@ -480,15 +480,15 @@ h1 {
   font-size: 30px;
   color: #aaa;
   text-align: center;
-  cursor: pointer;
 }
 .file_list {
   display: block;
+  margin: 0;
+  padding: 20px 0;
 }
 .file_list li {
   display: inline-block;
-  height: 250px;
-  width: 270px;
+  padding: 10px 30px;
   text-align: center;
 }
 .file_list li a {
@@ -497,6 +497,8 @@ h1 {
 }
 .file_list li a .contest_thumb_list {
   position: relative;
+  padding: 0;
+  margin: 0;
 }
 .file_list li a .contest_thumb_list li {
   -webkit-transition: all 0.5s ease-in-out;
@@ -504,9 +506,6 @@ h1 {
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 .file_list li a .contest_thumb_list li img {
   border: 2px solid #eee;
