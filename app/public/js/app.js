@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
    showErrors()
+   
 
   // Click event for new submissions
   $("#new_submission, div.no_submissions").click(function(){
@@ -29,23 +30,27 @@ $(document).ready(function(){
       var h_diff, w_diff;
       image.removeAttr('style')
 
-      if(image_height+35 > win_height) {
-        h_diff = (image_height+45)-win_height;
+      console.log(image_height);
+      console.log(image.height());
+      // console.log(image.width());
+
+      if(image.height()+35 > $(window).height()) {
+        h_diff = (image.height()+45)-$(window).height();
       } 
-      if(image_width+300 > win_width) {
-        w_diff = (image_width+300)-win_width;
+      if(image.width()+300 > $(window).width()) {
+        w_diff = (image.width()+300)-$(window).width();
       } 
 
       if(h_diff && w_diff) {
         if(h_diff>w_diff) {
-          image.height(win_height-45);
+          image.height($(window).height()-45);
         } else {
-          image.width(win_width-300);
+          image.width($(window).width()-300);
         }
       } else if (h_diff && !w_diff) {
-        image.height(win_height-45);
+        image.height($(window).height()-45);
       } else if (w_diff && !h_diff) {
-        image.width(win_width-300);
+        image.width($(window).width()-300);
       }
       fullsize.css("margin-left",0-(image.width()/2)+'px')
       fullsize.css("margin-top",0-(image.height()/2)+'px')

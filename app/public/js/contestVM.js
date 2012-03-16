@@ -118,28 +118,15 @@ Contest.prototype.addAsset = function(s) {
 };
 
 Contest.prototype.sortFunction = function(a, b) {
-  var value;
-  if(a.votes() < b.votes()) value = 1;
-  else value = -1;
-
-console.log(a)
-console.log(b)
-if(value === 1) b.test(false); 
-
-  return value;  
-};
-
-Contest.prototype.hideElement = function (elem) {
-  console.log(elem);
-  if (elem.nodeType === 1) $(elem).css({'opacity': 0}, function(){$(elem).remove()});
+  return a.votes() < b.votes() ? 1 : -1;  
 };
 
 Contest.prototype.showElement = function (elem) {
-  console.log(elem);
+  //console.log(elem);
   if (elem.nodeType === 1) {
 
-    $(elem).css('opacity', 0);
-    $(".images").animate({'opacity':1},1500)
+    $(elem).css('opacity', 0)
+    $(elem).animate({'opacity':1},500);
   }
 };
 

@@ -52,7 +52,7 @@ block content
         h1(data-bind="visible:current_contest") Leaders
         h1(data-bind="visible:contest_over") Results
       ul.image_list(data-bind="visible:has_submissions, foreach:{data:submissions_sort, afterAdd:showElement}")
-        li.images(data-bind="fadeVisible:test")
+        li.images
           a 
             div.vote_count
               span.name(data-bind="text:name")

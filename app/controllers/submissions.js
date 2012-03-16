@@ -52,7 +52,7 @@ exports = module.exports = {
             if(_.contains(submission.voters,user_id) === false) {
               if(!submission.votes) submission.votes = 0;
               submission.votes = submission.votes+1;
-              //submission.voters.push(user_id);
+              submission.voters.push(user_id);
 
               submission.save(function(err) {
                 if(err) res.send ({err:err, code:500});

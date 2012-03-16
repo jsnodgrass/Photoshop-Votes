@@ -11,7 +11,7 @@ block content
     ul.file_list(data-bind="visible:has_current_contests, foreach:all_current_contests")
       li
         a(data-bind="attr:{href:url}")
-          h5(data-bind="text:name")
+          h2(data-bind="text:name")
           ul.contest_thumb_list(data-bind="foreach:assets")
               li
                 img(data-bind="attr:{src:square}")
@@ -21,7 +21,7 @@ block content
     ul.file_list(data-bind="foreach:old_contests")
       li
         a(data-bind="attr:{href:url}")
-          h5(data-bind="text:name")
+          h2(data-bind="text:name")
           ul.contest_thumb_list(data-bind="foreach:assets")
               li
                 //img(data-bind="attr:{src:square}")
