@@ -14,6 +14,12 @@ var Contest = function(options, user) {
   this.assets = ko.observableArray([]);
   this.owner = ko.observable(options.owner.name);
 
+
+
+  this.showPlanetElement = function(elem) { console.log('hi'); if (elem.nodeType === 1) $(elem).hide().slideDown() }
+  this.hidePlanetElement = function(elem) { console.log('hi'); if (elem.nodeType === 1) $(elem).slideUp(function() { $(elem).remove(); }) }
+
+
   //load other VM's
     for (var i = 0; i < options.submissions.length; i++) this.addSubmission(options.submissions[i]);
     for (var i = 0; i < options.files.length; i++) this.addAsset(options.files[i]);
@@ -95,6 +101,9 @@ var Contest = function(options, user) {
     return "/contests/"+this.id();
   },this)
 
+
+  this.test = ko.observable(false);
+
 }
 
 Contest.prototype.addSubmission = function(s) {
@@ -109,7 +118,29 @@ Contest.prototype.addAsset = function(s) {
 };
 
 Contest.prototype.sortFunction = function(a, b) {
-  return a.votes() < b.votes() ? 1 : -1;  
+  var value;
+  if(a.votes() < b.votes()) value = 1;
+  else value = -1;
+
+console.log(a)
+console.log(b)
+if(value === 1) b.test(false); 
+
+  return value;  
+};
+
+Contest.prototype.hideElement = function (elem) {
+  console.log(elem);
+  if (elem.nodeType === 1) $(elem).css({'opacity': 0}, function(){$(elem).remove()});
+};
+
+Contest.prototype.showElement = function (elem) {
+  console.log(elem);
+  if (elem.nodeType === 1) {
+
+    $(elem).css('opacity', 0);
+    $(".images").animate({'opacity':1},1500)
+  }
 };
 
 Contest.prototype.edit_contest = function() {

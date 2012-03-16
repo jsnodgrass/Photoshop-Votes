@@ -11,6 +11,8 @@ var Submission = function(options, container) {
   this.owner_name = ko.observable(options.owner.name);
   this.upload = ko.observable(options.updated_at);
 
+  this.test = ko.observable(true);
+
   this.votes = ko.dependentObservable(function() {
     return 'Votes ' + this.vote_count();
   }, this)
@@ -41,12 +43,12 @@ var Submission = function(options, container) {
     return "Submitted by " + this.owner_name();
   },this)
 
-  // this.socket = io.connect('http://localhost:8080');
-  // var self = this;
-  // this.socket.on('vote_count', function (data) {
-  //   // console.log(data);
-  //   self.vote_count(data.votes)
-  // });
+  this.socket = io.connect('http://localhost:8080');
+  var self = this;
+  this.socket.on('vote_count', function (data) {
+     //console.log(data);
+    if(data.id === self.id()) self.vote_count(data.votes);
+  });
   
 };
 
@@ -60,7 +62,7 @@ Submission.prototype.voteHandler = function(){
     success: function(data){
       if(data.code === 200) {
         //console.log(data);
-        //self.socket.emit('vote',{'id':self.id()})
+        self.socket.emit('vote',{'id':self.id()})
         self.vote_count(data.votes);
         $(".fullsize").fadeOut();
         $("div.popup_background").fadeOut();
@@ -71,3 +73,17 @@ Submission.prototype.voteHandler = function(){
   })
 };
 
+
+ko.bindingHandlers.fadeVisible = {
+    init: function(element, valueAccessor) {
+
+        // Initially set the element to be instantly visible/hidden depending on the value
+        var value = valueAccessor();
+        $(element).toggle(ko.utils.unwrapObservable(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
+    },
+    update: function(element, valueAccessor) {
+        // Whenever the value subsequently changes, slowly fade the element in or out
+        var value = valueAccessor();
+        ko.utils.unwrapObservable(value) ? $(element).animate({'opacity':1},1500) : $(element).css('opacity',0);
+    }
+};

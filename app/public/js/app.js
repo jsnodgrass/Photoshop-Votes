@@ -60,6 +60,22 @@ $(document).ready(function(){
     $("div.popup_background").fadeOut();
   })  
 
+  // $('.images').bind('remove',function(){
+  //   var next = $(this).next();
+
+  //   next.css('opacity', 0);
+  //   next.next().css('opacity', 0);
+
+  //   setTimeout(function(){
+  //     next.animate({'opacity':1},{duration:250,queue:false});
+  //     next.next().animate({'opacity':1},{duration:250,queue:false});
+  //   },500)
+
+  // })
+
+  // $(".images").change('position',function(){
+  //   console.log("changed something");
+  // })
 
 })
 
