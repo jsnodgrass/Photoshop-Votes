@@ -5,7 +5,7 @@ var filters = require('../lib/filters');
  */
 // exports = module.exports = {
 
-var io = require('socket.io').listen(8080);
+var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
   //socket.broadcast.emit('news', { hello: 'world' });

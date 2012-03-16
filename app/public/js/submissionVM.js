@@ -41,7 +41,7 @@ var Submission = function(options, container) {
     return "Submitted by " + this.owner_name();
   },this)
 
-  this.socket = io.connect('http://localhost:8080');
+  this.socket = io.connect('/');
   var self = this;
   this.socket.on('vote_count', function (data) {
      //console.log(data);
