@@ -16,8 +16,7 @@ block content
               li
                 img(data-bind="attr:{src:square}")
 
-    h2 Old Contests
-    div.no_contests(data-bind="visible:no_old_contests") No Old Contests        
+    h2(data-bind="foreach:old_contests") Old Contests    
     ul.file_list(data-bind="foreach:old_contests")
       li
         a(data-bind="attr:{href:url}")

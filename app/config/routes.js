@@ -17,7 +17,6 @@ exports = module.exports = function() {
 
   // Submissions
   server.post('/submissions/:contest_id', controllers.submissions.create);
-  //server.get('/submissions', controllers.submissions.show);
   server.put('/submissions', controllers.submissions.update);
 
   // Contests

@@ -23,21 +23,26 @@ exports = module.exports = {
         res.redirect('/')
       
       var contest_id = req.params.contest_id;
-      req.body.image = req.files.submission;
-      var submission =  new models.submission(req.body);
-      submission.owner = req.currentUser;
-      submission.contest = contest_id;
-      submission.save(function(err){
-        if(err) {
-          req.flash(err);
-          res.redirect('/');
-        }
-        else {
-          setTimeout(function(){
-            res.redirect('/contests/'+contest_id);
-          },750)
-        }
-      })
+      if(!req.files.submission.size > 0) {
+        req.flash('error', 'you did not select an image');
+        res.redirect('/contests/'+contest_id);
+      } else {
+        req.body.image = req.files.submission;
+        var submission =  new models.submission(req.body);
+        submission.owner = req.currentUser;
+        submission.contest = contest_id;
+        submission.save(function(err){
+          if(err) {
+            req.flash(err);
+            res.redirect('/');
+          }
+          else {
+            setTimeout(function(){
+              res.redirect('/contests/'+contest_id);
+            },750)
+          }
+        })
+      }
     }
   ],
 

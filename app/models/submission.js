@@ -1,9 +1,8 @@
 var skookum = require('../lib/mongoose-skookum');
 
 /**
- * User model to interact with users collection in mongo using the Mongoose ORM
+ * Submission model
  *
- * @author Jim Snodgrass <jim@skookum.com>
  */
 
 var Submission = new server.mongoose.Schema({

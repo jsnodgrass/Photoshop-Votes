@@ -42,7 +42,7 @@ block content
                 ul
                   li
                     label(for="submission") Image
-                    input.newfile(type="file", name="image", id="image")
+                    input.newfile(type="file", name="image", id="image", required='required')
                     input(type="hidden", name="_method", value="put")
                   li
                     button(type="submit") Submit
@@ -52,13 +52,13 @@ block content
                 ul
                   li
                     label(for="name") Name
-                    input(type="text", name="name", data-bind="value:name")
+                    input(type="text", name="name", required='required', data-bind="value:name")
                   li
                     label(for="expires") End Date
-                    input(type="text", name="expires", class="ends", data-bind="value:end_date")
+                    input(type="text", name="expires", class="ends", placeholder="not required", data-bind="value:end_date")
                   li
                     label(for="description") Description
-                    textarea(name="description", data-bind="value:description")
+                    textarea(name="description", required='required', data-bind="value:description")
                     input(type="hidden", data-bind="value:id")
                   li
                     button(data-bind="click:edit_contest") Submit

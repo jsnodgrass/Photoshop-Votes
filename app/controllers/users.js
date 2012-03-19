@@ -17,25 +17,29 @@ exports = module.exports = {
   ],
 
   // Sign up POST
-  create: [ passport.authenticate('local', { failureRedirect: '/users/new' }),
+  create: [ //passport.authenticate('local', { failureRedirect: '/users/new' }),
     function(req, res, next) {
-      var user = new models.user(req.body);
-      //console.log('req.body:', req.body);
-      user.save(function(err){
-        if (err) {
-          console.log(err);
-          req.flash(err);
-          //return next();
+      console.log(req.body)
+      models.user.find_by_email(req.body, function(err, current_user) {
+        if(current_user) {
+          req.flash('error', 'That email already has an account!')
+          res.redirect('/users/new');
+        } else {
+          var user = new models.user(req.body);
+          console.log('user ----  ', user)
+          user.save(function(err){
+            if (err) {
+              console.log(err);
+              req.flash('error', err);
+            }
+            else {
+              req.flash('info', "Account created. Welcome to the Skookum Photoshop Contest!");
+            }
+            res.redirect('/');
+          });
         }
-        else {
-          req.flash('info', "Account created. Welcome to the Skookum Photoshop Contest!");
-          //return next();
-        }
-        res.redirect('/');
-      });
-    },
-    
-    //function (req, res) { res.redirect('/'); }
+      })
+    },    
   ],
 
   // Account edit form
@@ -50,19 +54,19 @@ exports = module.exports = {
   update: [
     filters.require_self,
     function(req, res) {
-      if(req.files.avatar) {
-        req.body.avatar = req.files.avatar
+
+      if(req.files.avatar.size > 0) {
+        req.body.avatar = req.files.avatar;
       }
-      console.log('req.user = ', req.user);
+
       models.user.updateById(req.user._id, req.body, function(err, updated_user) {
         if (updated_user) {
           req.flash('info', 'Account updated');
-          return res.redirect('/');
         }
         else {
           req.flash('error', 'Unable to update user');
-          return res.redirect('/');
         }
+        return res.redirect('/users/'+req.user._id);
       });
     }
   ],

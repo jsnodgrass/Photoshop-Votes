@@ -3,7 +3,6 @@ var skookum = require('../lib/mongoose-skookum');
 /**
  * User model to interact with users collection in mongo using the Mongoose ORM
  *
- * @author Jim Snodgrass <jim@skookum.com>
  */
 
 var User = new server.mongoose.Schema({

@@ -4,7 +4,7 @@ section.add_contest_form.modal
     ul
       li
         label(for="name") Name
-        input(type="text", name="name", placeholder="required")
+        input(type="text", name="name", placeholder="name", required='required')
       li
         label(for="starts") Start Date
         input(type="text", name="starts", id="starts", placeholder="not required")
@@ -13,6 +13,6 @@ section.add_contest_form.modal
         input(type="text", name="expires", id="ends", placeholder="not required")
       li
         label(for="description") Description
-        textarea(name="description", placeholder="required")
+        textarea(name="description", placeholder="Add a description about the contest", required='required')
       li
         button(type="submit") Submit

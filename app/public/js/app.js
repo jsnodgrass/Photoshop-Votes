@@ -1,7 +1,15 @@
 
 
 $(document).ready(function(){
-   showErrors()
+  showErrors()
+
+  $("form").validator();
+  $.tools.validator.fn("[passminlength]", function(input, value) {
+    var min = input.attr("passminlength");
+    return value.length >= min ? true : {
+      en: "Password must be at least " +min+ " character" + (min > 1 ? "s" : "")
+    };
+  });
    
 
   // Click event for new submissions
@@ -12,6 +20,7 @@ $(document).ready(function(){
   $("span.close_box").click(function(){
     $(this).parent().fadeOut('fast');
     $("div.popup_background").fadeOut('fast');
+    $("div.error").fadeOut('fast');
   })
 
 
@@ -62,6 +71,7 @@ $(document).ready(function(){
   $("div.popup_background, div.fullsize>img").click(function() {
     $(".fullsize").fadeOut();
     $(".modal").fadeOut('fast');
+    $("div.error").fadeOut('fast');
     $("div.popup_background").fadeOut();
   })  
 

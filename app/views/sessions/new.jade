@@ -8,8 +8,8 @@ block content
   section#main.wrap
     form(action="/sessions", method="post")
       .clearfix
-        input(type='email', name='email', placeholder='email')
+        input(type='email', name='email', placeholder='email', required='required')
       .clearfix
-        input(type='password', name='password', placeholder='password')
+        input(type='password', name='password', placeholder='password', required='required', passminlength='5')
       .clearfix
         input.btn.primary(type="submit") Submit

@@ -16,7 +16,7 @@ block content
 
           .clearfix
             label(for="name") Name
-            .input: input(type='text', name='name', placeholder='name', value=current_user.name)
+            .input: input(type='text', name='name', placeholder='name', required='required', value=current_user.name)
           .clearfix
             label(for="avatar") Avatar Image
             .input: input(type='file', name='avatar', placeholder='image')
@@ -24,7 +24,6 @@ block content
             label(for="about") About Me
             .input
               textarea.xxlarge(name='about') #{current_user.about}
-              span.help-block Give us a reason to remember you
           .clearfix
             .input
               input(type="hidden", method="put")
