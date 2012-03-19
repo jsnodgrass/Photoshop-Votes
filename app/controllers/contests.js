@@ -65,8 +65,13 @@ exports = module.exports = {
   add_image: [ filters.require_user, filters.is_contest_admin,
     function(req, res) {
       //console.log(req.files)
+      console.log(req.currentUser)
       var contest_id = req.params.contest_id;
-      if(req.files.image) {
+      if(!req.files.image.size > 0) {
+        req.flash('error', 'You did not select an image. Please try again!');
+        if(req.currentUser.admin) res.redirect("/admin");
+        else res.redirect("/contests/admin");
+      } else {
         models.contest.findById(contest_id, function(err, contest) {
           if(err) req.flash(err)
           else {

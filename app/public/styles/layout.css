@@ -377,6 +377,7 @@ h1 {
   -ms-transition: height 1s;
   -o-transition: height 1s;
   transition: height 1s;
+  z-index: 1;
 }
 #messages ul {
   text-align: center;

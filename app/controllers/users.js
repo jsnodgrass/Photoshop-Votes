@@ -19,17 +19,14 @@ exports = module.exports = {
   // Sign up POST
   create: [ //passport.authenticate('local', { failureRedirect: '/users/new' }),
     function(req, res, next) {
-      console.log(req.body)
       models.user.find_by_email(req.body, function(err, current_user) {
         if(current_user) {
           req.flash('error', 'That email already has an account!')
           res.redirect('/users/new');
         } else {
           var user = new models.user(req.body);
-          console.log('user ----  ', user)
           user.save(function(err){
             if (err) {
-              console.log(err);
               req.flash('error', err);
             }
             else {

@@ -24,7 +24,7 @@ exports = module.exports = {
       
       var contest_id = req.params.contest_id;
       if(!req.files.submission.size > 0) {
-        req.flash('error', 'you did not select an image');
+        req.flash('error', 'You did not select an image. Please try again!');
         res.redirect('/contests/'+contest_id);
       } else {
         req.body.image = req.files.submission;
