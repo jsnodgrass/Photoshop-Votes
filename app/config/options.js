@@ -26,12 +26,11 @@ exports = module.exports = function(env) {
       this.port = 8000;
     },
     labs: function() {
-      this.dumpExceptions = false;
-      this.errorToHtml = false;
+      this.host = 'http://labs.skookum.com';
+      this.port = 4000;
     },
     staging: function() {
-      this.host = 'http://staging.skookum.com';
-      this.port = 4000;
+
     },
     production: function() {
 
