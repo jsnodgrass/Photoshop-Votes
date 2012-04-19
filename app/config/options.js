@@ -25,9 +25,13 @@ exports = module.exports = function(env) {
       this.redis = { host: 'localhost', port: 6379, db: this.appname +'_test' };
       this.port = 8000;
     },
-    staging: function() {
+    labs: function() {
       this.dumpExceptions = false;
       this.errorToHtml = false;
+    },
+    staging: function() {
+      this.host = 'http://staging.skookum.com';
+      this.port = 4000;
     },
     production: function() {
 
@@ -38,6 +42,7 @@ exports = module.exports = function(env) {
   
   option_tables.test.prototype = new option_tables.development();
   option_tables.staging.prototype = new option_tables.development();
+  option_tables.labs.prototype = new option_tables.development();
   option_tables.production.prototype = new option_tables.development();
 
   return new option_tables[env]();
