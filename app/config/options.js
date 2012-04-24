@@ -13,7 +13,7 @@ exports = module.exports = function(env) {
       this.reqTimeout = 30000;
       this.sessionKey = 'ph0t0sh0p';
       this.host = 'http://localhost';
-      this.port = 80;
+      this.port = 4000;
       this.dumpExceptions = true;
       this.showStack = true;
       this.errorToHtml = true;

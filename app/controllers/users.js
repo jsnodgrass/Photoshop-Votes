@@ -43,7 +43,7 @@ exports = module.exports = {
   edit: [
     filters.require_self,
     function(req, res) {
-      res.render('users/edit', {user: req.user});
+      res.render('users/edit', {user: req.currentUser});
     }
   ],
 
@@ -56,14 +56,14 @@ exports = module.exports = {
         req.body.avatar = req.files.avatar;
       }
 
-      models.user.updateById(req.user._id, req.body, function(err, updated_user) {
+      models.user.updateById(req.currentUser._id, req.body, function(err, updated_user) {
         if (updated_user) {
           req.flash('info', 'Account updated');
         }
         else {
           req.flash('error', 'Unable to update user');
         }
-        return res.redirect('/users/'+req.user._id);
+        return res.redirect('/users/'+req.currentUser._id);
       });
     }
   ],
@@ -72,7 +72,7 @@ exports = module.exports = {
   show: [
     filters.is_self,
     function(req, res) {
-      res.render('users/show', {user: req.user, is_self: req.is_self, section: 'user'});
+      res.render('users/show', {user: req.currentUser, is_self: req.is_self, section: 'user'});
     }
   ],
 

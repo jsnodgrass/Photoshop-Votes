@@ -6,13 +6,13 @@ nav.topbar-wrapper
         li: a(href='/admin') Admin
       - if (is_contest_admin && !is_admin)
         li: a(href='/contests/admin') Admin
-      li: a(href=account_route) Your profile
-      li: a(href=account_route+'/edit') Account
+      li: a(href="/users/"+current_user._id) Your profile
+      li: a(href='/users/'+current_user._id+'/edit') Account
       li: a(href="/contests") Contests
-      li: a(href=route('logout')) Logout
+      li: a(href='/sessions/logout') Logout
     - else
       li: a(href="/contests") Contests
-      li: a(href=route('register')) Create an account
-      li: a(href=route('login')) Sign in
+      li: a(href='/users/new') Create an account
+      li: a(href='/sessions/login') Sign in
   - if (is_logged_in)
     span.plain.pull-right Welcome back, #{current_user.name}

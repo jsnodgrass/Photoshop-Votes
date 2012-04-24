@@ -93,6 +93,9 @@ exports = module.exports = function() {
         return '/users/' + req.currentUser._id;
       }
       return '/';
+    },
+    user: function(req, res) {
+      return req.currentUser;
     }
   });
 

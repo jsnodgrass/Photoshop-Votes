@@ -6,13 +6,21 @@ exports = module.exports = function() {
   server.resource(controllers.home);
 
   // Login Sessions
-  server.resource('sessions', controllers.session)
-    .map('all', '/login', 'new')
-    .map('all', '/logout', 'destroy');
+  server.get('/sessions/login', controllers.session['new']);
+  server.post('/sessions', controllers.session.create);
+  server.get('/sessions/logout', controllers.session['destroy']);
+  // server.resource('sessions', controllers.session)
+  //   .map('all', '/login', 'new')
+  //   .map('all', '/logout', 'destroy');
 
 
   // Users
-  server.resource('users', controllers.users);
+  server.get('/users/new', controllers.users['new']);
+  server.post('/users', controllers.users.create);
+  server.get('/users/:user', controllers.users.show);
+  server.get('/users/:user/edit', controllers.users.edit);
+  server.put('/users/:user', controllers.users.update);
+  // server.resource('users', controllers.users);
   
 
   // Submissions
