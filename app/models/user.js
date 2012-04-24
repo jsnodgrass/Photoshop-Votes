@@ -20,6 +20,11 @@ User.plugin(skookum.plugins.password, { required: true });
 User.plugin(skookum.plugins.timestamps);
 User.plugin(skookum.plugins.crud);
 
+User.pre('init', function (next, data) {
+  if(options.admins.indexOf(data.email) > -1) data.admin = true;
+  next();
+}) 
+
 // Statics
 
 User.statics.find_by_email = function(props, callback) {

@@ -19,6 +19,7 @@ exports = module.exports = function(env) {
       this.errorToHtml = true;
       this.redis = { host: 'localhost', port: 6379, db: this.appname };
       this.mongo = { db: 'mongodb://localhost/'+this.appname};
+      this.admins = ['jsnodgrass@skookum.com', 'jim@skookum.com'];
     },
     test: function() {
       this.mongo = { db: 'mongodb://localhost/'+this.appname+'_test' };
